@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Detail</title>
+    <style>
+        body { font-family: 'Times New Roman', serif; font-style: italic; }
+        .action-box {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .action-box a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+        }
+        .action-box .delete {
+            background-color: #c7df4d; 
+        }
+        .action-box .delete:hover {
+            background-color: #c7df4d;
+        }
+        .action-box .back {
+            background-color:rgb(96, 229, 174); 
+        }
+        .action-box .back:hover {
+            background-color: rgb(96, 229, 174)2;
+        }
+        h1 {
+            background-color: rgba(70, 184, 188, 0.5); 
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ todo.title }}</h1>
+    <p>{{ todo.description }}</p>
+    <p>Due Date: {{ todo.due_date }}</p>
+    <p>Status: {{ todo.status }}</p>
+
+    <div class="action-box">
+        <a href="{% url 'todo_delete' todo.id %}" class="delete">Delete</a>
+        <a href="{% url 'todo_list' %}" class="back">Back to list</a>
+    </div>
+</body>
+</html>
