@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Списки задач</h1>
+<ul>
+    {% for list in lists %}
+        <li><a href="{% url 'todo_list_detail' list.id %}">{{ list.title }}</a></li>
+    {% endfor %}
+</ul>
+
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addListModal">Добавить список</button>
+
+<!-- Модальное окно -->
+<div class="modal fade" id="addListModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ form.as_p }}
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Создать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
