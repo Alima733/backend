@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Todo List Detail{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>{{ todo_list.title }}</h2>
+    <p>{{ todo_list.description }}</p>
+    <a href="{% url 'todo_list_edit' todo_list.id %}" class="btn btn-warning">Edit List</a>
+    <a href="{% url 'todo_list_delete' todo_list.id %}" class="btn btn-danger">Delete List</a>
+    <h3 class="mt-4">Tasks</h3>
+    <ul class="list-group">
+        {% for todo in todos %}
+            <li class="list-group-item">
+                <strong>{{ todo.title }}</strong> - {{ todo.description }} (Due: {{ todo.due_date }})
+                {% if todo.status %}
+                    <span class="badge bg-success">Completed</span>
+                {% else %}
+                    <span class="badge bg-secondary">Pending</span>
+                {% endif %}
+                <a href="{% url 'todo_edit' todo.id %}" class="btn btn-sm btn-primary">Edit</a>
+                <a href="{% url 'todo_delete' todo.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <h3 class="mt-4">Add Task</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Add Task</button>
+    </form>
+</div>
+{% endblock %}

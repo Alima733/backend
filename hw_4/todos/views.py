@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import TodoList, Todo
-from .todos import TodoListForm, TodoForm
+from .forms import TodoListForm, TodoForm
 
 def redirect_to_todo_lists(request):
     return redirect('todo_lists')

@@ -11,6 +11,8 @@
 <body>
     <h1>Create Todo</h1>
     <form method="post">
+        {% csrf_token %}
+        {{form}}
         <button type="submit">Save</button>
     </form>
     <a href="{% url 'todo_list' %}">Cancel</a>

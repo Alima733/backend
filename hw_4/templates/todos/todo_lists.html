@@ -7,13 +7,21 @@
     {% endfor %}
 </ul>
 
-<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addListModal">Добавить список</button>
 
-<!-- Модальное окно -->
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Добавить список</button>
+</form>
+
+
+<button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addListModal">Добавить список через модал</button>
+
+
 <div class="modal fade" id="addListModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="POST">
+            <form method="POST" action="{% url 'todo_lists' %}">
                 {% csrf_token %}
                 <div class="modal-body">
                     {{ form.as_p }}

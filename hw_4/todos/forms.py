@@ -1,5 +1,5 @@
 from django import forms
-from models import TodoList, Todo
+from .models import TodoList, Todo
 
 class TodoListForm(forms.ModelForm):
     class Meta:
